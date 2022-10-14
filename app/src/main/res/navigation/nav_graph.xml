@@ -17,7 +17,8 @@
     <fragment
         android:id="@+id/detailFragment"
         android:name="com.acclivousbyte.bassam.view.fragments.PersonDetailFragment"
-        android:label="detailFragment" >
+        android:label="detailFragment"
+        tools:layout="@layout/fragment_detail">
         <action
             android:id="@+id/action_detailFragment_to_socailProfileFragment"
             app:destination="@id/socailProfileFragment" />
