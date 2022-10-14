@@ -1,0 +1,145 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.fragments.SocailProfileFragment">
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="300dp"
+        android:layout_height="413dp"
+        android:background="@drawable/socail_background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_twitter"
+        android:layout_width="34dp"
+        android:layout_height="28dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/view"
+        app:srcCompat="@drawable/twitter_icon_3x" />
+
+    <TextView
+        android:id="@+id/tv_twitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="usertwitter"
+        app:layout_constraintEnd_toEndOf="@+id/iv_twitter"
+        app:layout_constraintStart_toStartOf="@+id/iv_twitter"
+        app:layout_constraintTop_toBottomOf="@+id/iv_twitter" />
+
+    <TextView
+        android:id="@+id/tv_twitter_fatah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:text="فتح"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toEndOf="@+id/tv_twitter_nasah"
+        app:layout_constraintTop_toBottomOf="@+id/tv_twitter" />
+
+    <TextView
+        android:id="@+id/tv_twitter_nasah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:text="نسخ"
+        app:layout_constraintEnd_toStartOf="@+id/tv_twitter_fatah"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/tv_twitter_fatah" />
+
+    <ImageView
+        android:id="@+id/iv_insta"
+        android:layout_width="32.7dp"
+        android:layout_height="32.7dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/tv_twitter_nasah"
+        app:srcCompat="@drawable/insta_icon_3x" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="userinsta"
+        app:layout_constraintEnd_toEndOf="@+id/iv_insta"
+        app:layout_constraintStart_toStartOf="@+id/iv_insta"
+        app:layout_constraintTop_toBottomOf="@+id/iv_insta" />
+
+    <TextView
+        android:id="@+id/tv_insta_nasah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="نسخ"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_insta_fatah"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toTopOf="@+id/tv_insta_fatah" />
+
+    <TextView
+        android:id="@+id/tv_insta_fatah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="فتح"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toEndOf="@+id/tv_insta_nasah"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <ImageView
+        android:id="@+id/iv_snap"
+        android:layout_width="36dp"
+        android:layout_height="34dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/tv_insta_nasah"
+        app:srcCompat="@drawable/snapchat_icon_3x" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="usersnap"
+        app:layout_constraintEnd_toEndOf="@+id/iv_snap"
+        app:layout_constraintStart_toStartOf="@+id/iv_snap"
+        app:layout_constraintTop_toBottomOf="@+id/iv_snap" />
+
+    <TextView
+        android:id="@+id/tv_snap_nasah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="نسخ"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toStartOf="@+id/tv_snap_fatah"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+    <TextView
+        android:id="@+id/tv_snap_fatah"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:cursorVisible="false"
+        android:text="فتح"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/view"
+        app:layout_constraintStart_toEndOf="@+id/tv_snap_nasah"
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Bassam</string>
+    <string name="display_name">الدلیل</string>
+    <string name="search_hint">إبحث عن عنوان خبر أو</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="server_not_responding">Server not responding</string>
+    <string name="no_internet">Please check your internet connection or try again later</string>
+    <string name="online">Online</string>
+    <string name="states_view_support">States View Support</string>
+    <string name="server_not_respond_message">Server is not responding properly please try again later</string>
+</resources>

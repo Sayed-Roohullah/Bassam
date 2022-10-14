@@ -1,0 +1,30 @@
+package com.acclivousbyte.bassam.models.genrelModels
+
+data class Sibling(
+    val branch: String,
+    val city: String,
+    val contact: String,
+    val contact_extension: String,
+    val country: String,
+    val credentials_issued: String,
+    val credentials_revoked: String,
+    val dob: String,
+    val dob_calendar_type: String,
+    val email: String,
+    val gender: String,
+    val id: Int,
+    val m_father_name: String,
+    val m_grand_father_name: String,
+    val mobile: String,
+    val mother_name: String,
+    val name: String,
+    val nodeID: String,
+    val p_dob: String,
+    val p_email: String,
+    val p_mother_info: String,
+    val p_profile_picture: String,
+    val parent_id: String,
+    val profile_picture_circle: String,
+    val profile_picture_square: String,
+    val sequence: String
+)

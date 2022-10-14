@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="77dp">
+
+    <ImageView
+        android:id="@+id/parentimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/default_image" />
+
+    <TextView
+        android:id="@+id/node_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/parentimage"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="8dp"
+        android:text="00000" />
+
+    <TextView
+        android:id="@+id/name_fa_gfa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/parentimage"/>
+
+    <TextView
+        android:id="@+id/deathperson"
+        android:layout_below="@+id/name_fa_gfa"
+        android:layout_toLeftOf="@+id/parentimage"
+        android:text="رحمه الله"
+        android:layout_marginEnd="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/worthy_gray"
+        android:src="@drawable/worthy_gray"
+        android:layout_width="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:layout_below="@+id/node_id"
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

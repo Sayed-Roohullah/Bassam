@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.acclivousbyte.bassam.view.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.acclivousbyte.bassam.view.fragments.PersonDetailFragment"
+        android:label="detailFragment" >
+        <action
+            android:id="@+id/action_detailFragment_to_socailProfileFragment"
+            app:destination="@id/socailProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/socailProfileFragment"
+        android:name="com.acclivousbyte.bassam.view.fragments.SocailProfileFragment"
+        android:label="fragment_socail_profile"
+        tools:layout="@layout/fragment_socail_profile" >
+        <action
+            android:id="@+id/action_socailProfileFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+</navigation>
