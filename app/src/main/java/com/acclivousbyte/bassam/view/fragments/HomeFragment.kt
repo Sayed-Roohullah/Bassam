@@ -41,7 +41,7 @@ class HomeFragment : MainMVVMNavigationFragment<HomeViewModel>(HomeViewModel::cl
         binding = FragmentHomeBinding.bind(mRootView)
 
          val dialogHelper by inject<MaterialDialogHelper>()
-        setupProgressDialog(viewModel.showHideProgressDialog, dialogHelper)
+         setupProgressDialog(viewModel.showHideProgressDialog, dialogHelper)
 
         if (isNetworkAvailable(requireContext())) {
             viewModel.DetailData()

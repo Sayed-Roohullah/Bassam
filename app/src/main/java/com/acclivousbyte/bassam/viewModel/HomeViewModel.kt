@@ -17,8 +17,12 @@ class HomeViewModel(private val repository: Repository ): BaseViewModel() {
     fun DetailData() {
         viewModelScope.launch {
 
+            _showHideProgressDialog.value = true.wrapWithEvent()
+
             repository.homedetaildata().run {
                 onSuccess {
+                    _showHideProgressDialog.value = false.wrapWithEvent()
+
                     if (it.Status == VALID_STATUS_CODE) {
                         if (it.Data != null) {
                             maindetailData.value = it
