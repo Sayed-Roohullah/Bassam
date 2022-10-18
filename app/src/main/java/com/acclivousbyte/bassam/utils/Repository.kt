@@ -9,14 +9,14 @@ class Repository(private val apiServices: ApiServices) {
 
     private val dispatcher = Dispatchers.IO
 
-    suspend fun homedetaildata() = withContext(dispatcher) {
+    suspend fun homeDetailData() = withContext(dispatcher) {
 
         safeApiCall {
             Result.success(apiServices.getDetailData())
         }
 
     }
-    suspend fun persondetaildata(id:String) = withContext(dispatcher) {
+    suspend fun personDetailData(id:String) = withContext(dispatcher) {
          safeApiCall {
             Result.success(apiServices.getPesonDetail(id))
         }

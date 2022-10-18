@@ -1,5 +1,7 @@
 package com.acclivousbyte.bassam.models.genrelModels
 
+import java.io.Serializable
+
 data class DataX(
     val alive: String,
     val branch: String,
@@ -69,4 +71,4 @@ data class DataX(
     val w_grand_father_name: String,
     val wife_name: String,
     val workplaces: List<Workplace>
-)
+) : Serializable

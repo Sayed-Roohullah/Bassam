@@ -22,6 +22,11 @@
         <action
             android:id="@+id/action_detailFragment_to_socailProfileFragment"
             app:destination="@id/socailProfileFragment" />
+        <argument
+            android:name="userObj"
+            app:argType="com.acclivousbyte.bassam.models.genrelModels.Data"
+            />
+
     </fragment>
     <fragment
         android:id="@+id/socailProfileFragment"
@@ -31,5 +36,11 @@
         <action
             android:id="@+id/action_socailProfileFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
+
+        <argument
+            android:name="userSocailObj"
+            app:argType="com.acclivousbyte.bassam.models.genrelModels.DataX"
+            />
+
     </fragment>
 </navigation>

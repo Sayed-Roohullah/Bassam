@@ -137,6 +137,7 @@
                         android:textStyle="bold" />
                 </RelativeLayout>
 
+
                 <RelativeLayout
                     android:id="@+id/location_layout"
                     android:layout_width="147dp"
@@ -417,13 +418,13 @@
                  android:layout_height="wrap_content">
 
                     <TextView
-                        android:id="@+id/rootsib"
+                        android:id="@+id/rootsible"
                         android:layout_marginStart="150dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:layout_below="@+id/rootsib"
+                    android:layout_below="@+id/rootsible"
                     android:id="@+id/sibling_recycle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>

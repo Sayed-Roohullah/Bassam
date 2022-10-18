@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.acclivousbyte.bassam.R
@@ -17,6 +18,7 @@ import com.acclivousbyte.bassam.koinDI.persondetailModule
 import com.acclivousbyte.bassam.models.genrelModels.Children
 import com.acclivousbyte.bassam.models.genrelModels.DataX
 import com.acclivousbyte.bassam.models.genrelModels.Sibling
+import com.acclivousbyte.bassam.utils.BassamViewUtil
 import com.acclivousbyte.bassam.utils.MaterialDialogHelper
 import com.acclivousbyte.bassam.utils.setupProgressDialog
 import com.acclivousbyte.bassam.view.adapter.ChildAdapter
@@ -28,16 +30,14 @@ import org.koin.core.module.Module
 
 class PersonDetailFragment: MainMVVMNavigationFragment<PersonDetailVewModel>(PersonDetailVewModel::class) {
 
-    companion object{
-        var phone = " "
-        var email =  " "
-        var socail =  " "
+    private val args: PersonDetailFragmentArgs by navArgs()
+    private lateinit var socailinfo: DataX
+    var phone = ""
+    var email = ""
+    var socail = ""
 
-        var p_id = 0
+    var pId = 0
 
-        private lateinit var socailinfo: DataX
-
-    }
     private var childerns = listOf<Children>()
     private var siblings = listOf<Sibling>()
 
@@ -60,10 +60,10 @@ class PersonDetailFragment: MainMVVMNavigationFragment<PersonDetailVewModel>(Per
         val dialogHelper by inject<MaterialDialogHelper>()
         setupProgressDialog(viewModel.showHideProgressDialog, dialogHelper)
 
-        setupData()
+        pId = args.userObj.id
 
         if (isNetworkAvailable(requireContext())) {
-            viewModel.PersonDetailData(p_id.toString())
+            viewModel.personDetailData(pId.toString())
         } else {
             showAlertDialog(getString(R.string.no_internet))
         }
@@ -74,17 +74,10 @@ class PersonDetailFragment: MainMVVMNavigationFragment<PersonDetailVewModel>(Per
 
         binding.backbtn?.setOnClickListener {
             findNavController().navigateUp()
-            //findNavController().navigate(detailFragmentDirections.actionDetailFragmentToHomeFragment())
-        }
+         }
         binding.socail.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putString("twitter",  socailinfo.twitter)
-            bundle.putString("insta",  socailinfo.instagram)
-            bundle.putString("snap",  socailinfo.snapchat)
-            findNavController().navigate(
-                R.id.action_detailFragment_to_socailProfileFragment,
-                bundle
-            )
+           val action = PersonDetailFragmentDirections.actionDetailFragmentToSocailProfileFragment(socailinfo)
+            findNavController().navigate(action)
         }
         binding.mail.setOnClickListener {
             val intent = Intent(
@@ -96,7 +89,7 @@ class PersonDetailFragment: MainMVVMNavigationFragment<PersonDetailVewModel>(Per
             startActivity(Intent.createChooser(intent, "Email"))
         }
         binding.phone.setOnClickListener {
-            dailerpad()
+            dailerPad()
 
         }
 
@@ -109,8 +102,7 @@ class PersonDetailFragment: MainMVVMNavigationFragment<PersonDetailVewModel>(Per
                     R.drawable.default_image
                 )
             )
-            val bundle = arguments
-            binding.roottext.text = bundle?.getString("name", "")
+             binding.roottext.text = args.userObj.name
              binding.childRecycle.let {
                 it.layoutManager = LinearLayoutManager(requireContext())
                 it.addItemDecoration(DividerItemDecoration(context, 0))
@@ -122,8 +114,7 @@ class PersonDetailFragment: MainMVVMNavigationFragment<PersonDetailVewModel>(Per
         binding.sibling.setOnClickListener {
             binding.childernview.visibility = View.GONE
             binding.siblingview.visibility = View.VISIBLE
-            val bundle = arguments
-            binding.rootsib.text = bundle?.getString("name", "")
+             binding.rootsible.text = args.userObj.name
              binding.siblingRecycle.let {
                 it.layoutManager = LinearLayoutManager(requireContext())
                 it.addItemDecoration(DividerItemDecoration(context, 0))
@@ -133,18 +124,7 @@ class PersonDetailFragment: MainMVVMNavigationFragment<PersonDetailVewModel>(Per
 
         }
     }
-    private fun setupData() {
-        val bundle = arguments
-        p_id = arguments!!.getInt("id",0)
-        binding.nodeIdPass.text = bundle?.getString("nodeid", "")
-        binding.passName.text = bundle?.getString("name", "")
-        val fname = bundle?.getString("fname", "")
-        val gfname = bundle?.getString("gfname", "")
-        val ggfname = bundle?.getString("ggfname", "")
-        binding.passGrndname.text = fname + " " + gfname + " " + ggfname
 
-
-    }
     private fun attachViewModel() {
         observe(viewModel.snackbarMessage) {
             val msg = it?.consume()
@@ -158,6 +138,9 @@ class PersonDetailFragment: MainMVVMNavigationFragment<PersonDetailVewModel>(Per
             childerns = it.Data.children
             siblings = it.Data.siblings
 
+            binding.nodeIdPass.text = it.Data.nodeID
+            binding.passName.text = it.Data.name
+            binding.passGrndname.text = it.Data.father_name +" "+ it.Data.grand_father_name +" "+ it.Data.g_grand_father_name
             binding.calender.text = it.Data.p_dob
             binding.desctext.text = it.Data.brief_description
             binding.location.text = it.Data.p_location
@@ -216,15 +199,15 @@ class PersonDetailFragment: MainMVVMNavigationFragment<PersonDetailVewModel>(Per
                 binding.description.visibility = View.GONE
             }
 
-            if (it.Data.p_location == "Hidden") {
+            if (it.Data.p_location == BassamViewUtil.HIDDEN) {
                 binding.location.visibility = View.GONE
             }
-            if (it.Data.p_dob == "Hidden") {
+            if (it.Data.p_dob == BassamViewUtil.HIDDEN) {
                 binding.calender.visibility = View.GONE
                 binding.calIcon.visibility = View.GONE
 
             }
-            if (it.Data.p_education == "Hidden") {
+            if (it.Data.p_education == BassamViewUtil.HIDDEN) {
                 binding.education.visibility = View.GONE
             }
 
@@ -236,7 +219,7 @@ class PersonDetailFragment: MainMVVMNavigationFragment<PersonDetailVewModel>(Per
 
         }
     }
-        fun dailerpad() {
+        fun dailerPad() {
             val callIntent = Intent(Intent.ACTION_DIAL)
             callIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             callIntent.data = Uri.parse("tel:" + phone)

@@ -23,7 +23,7 @@ val appModule = module {
 
     single<Call.Factory> { okHttp(get()) }
 
-    single { retrofit(get()) }
+     single { retrofit(get()) }
 
     single { get<Retrofit>().create(ApiServices::class.java) }
 }

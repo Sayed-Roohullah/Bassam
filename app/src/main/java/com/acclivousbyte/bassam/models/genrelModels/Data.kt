@@ -1,5 +1,8 @@
 package com.acclivousbyte.bassam.models.genrelModels
 
+import java.io.Serializable
+
+
 data class Data(
     val alive: String,
     val city: String,
@@ -37,4 +40,4 @@ data class Data(
     val twitter: String,
     val w_grand_father_name: String,
     val workplaces: List<Any>
-)
+) : Serializable

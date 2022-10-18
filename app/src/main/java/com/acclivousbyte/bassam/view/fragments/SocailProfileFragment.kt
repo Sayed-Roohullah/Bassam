@@ -7,8 +7,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.acclivousbyte.bassam.R
 import com.acclivousbyte.bassam.databinding.FragmentSocailProfileBinding
+import com.acclivousbyte.bassam.utils.BassamViewUtil
 
 
 class SocailProfileFragment : Fragment(R.layout.fragment_socail_profile) {
@@ -17,6 +19,8 @@ class SocailProfileFragment : Fragment(R.layout.fragment_socail_profile) {
     private var snapchat: String? = null
     private lateinit var clipboard: ClipboardManager
     private lateinit var cliptext: ClipData
+    private val args: SocailProfileFragmentArgs by navArgs()
+
     private lateinit var binding: FragmentSocailProfileBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,23 +29,22 @@ class SocailProfileFragment : Fragment(R.layout.fragment_socail_profile) {
         clipboard = context?.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
 
 
-        val bundle = arguments
 
-        twitter = bundle?.getString("twitter")
-        instagram = bundle?.getString("insta")
-        snapchat = bundle?.getString("snap")
+        twitter = args.userSocailObj.twitter
+        instagram = args.userSocailObj.instagram
+        snapchat = args.userSocailObj.snapchat
 
 
         binding.tvTwitterFatah.setOnClickListener {
             if (twitter == "") {
-                Toast.makeText(context, "Not have Profile", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, BassamViewUtil.NOT_HAVE_PROFILE_MESSAGE, Toast.LENGTH_SHORT).show()
             } else {
                 try {
                     startActivity(
-                        Intent(Intent.ACTION_VIEW, Uri.parse("twitter://user?screen_name=$twitter")))
+                        Intent(Intent.ACTION_VIEW, Uri.parse(BassamViewUtil.TWITTER_URI+"$twitter")))
                 } catch (e: java.lang.Exception) {
                     startActivity(
-                        Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/#!/$twitter")))
+                        Intent(Intent.ACTION_VIEW, Uri.parse(BassamViewUtil.TWITTER_EXCEPTION_URI+"$twitter")))
                 }
 
             }
@@ -49,12 +52,12 @@ class SocailProfileFragment : Fragment(R.layout.fragment_socail_profile) {
 
         binding.tvTwitterNasah.setOnClickListener {
             if (twitter == "") {
-                Toast.makeText(context, "Not have Profile", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, BassamViewUtil.NOT_HAVE_PROFILE_MESSAGE, Toast.LENGTH_SHORT).show()
 
             } else {
-                cliptext = ClipData.newPlainText("label", "$twitter")
+                cliptext = ClipData.newPlainText(BassamViewUtil.LABEL, "$twitter")
                 clipboard.setPrimaryClip(cliptext)
-                Toast.makeText(context, "Text Copied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, BassamViewUtil.TEXT_COPIED, Toast.LENGTH_SHORT).show()
 
             }
         }
@@ -63,16 +66,16 @@ class SocailProfileFragment : Fragment(R.layout.fragment_socail_profile) {
 
         binding.tvInstaFatah.setOnClickListener {
             if (instagram == "") {
-                Toast.makeText(context, "Not have Profile", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, BassamViewUtil.NOT_HAVE_PROFILE_MESSAGE, Toast.LENGTH_SHORT).show()
             } else {
                 val uri = instagram?.toUri()
                 val likeIng = Intent(Intent.ACTION_VIEW, uri)
-                likeIng.setPackage("com.instagram.android")
+                likeIng.setPackage(BassamViewUtil.INSTA_PACKAGE)
 
                 try {
                     startActivity(likeIng)
                 } catch (e: ActivityNotFoundException) {
-                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("http://instagram.com/xxx")))
+                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(BassamViewUtil.INSTAGRAM_URI)))
                 }
 
             }
@@ -81,11 +84,11 @@ class SocailProfileFragment : Fragment(R.layout.fragment_socail_profile) {
 
         binding.tvInstaNasah.setOnClickListener {
             if (instagram == "") {
-                Toast.makeText(context, "Not have Profile", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, BassamViewUtil.NOT_HAVE_PROFILE_MESSAGE, Toast.LENGTH_SHORT).show()
             } else {
-                cliptext = ClipData.newPlainText("label", "$instagram")
+                cliptext = ClipData.newPlainText(BassamViewUtil.LABEL, "$instagram")
                 clipboard.setPrimaryClip(cliptext)
-                Toast.makeText(context, "Text Copied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, BassamViewUtil.TEXT_COPIED, Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -94,16 +97,16 @@ class SocailProfileFragment : Fragment(R.layout.fragment_socail_profile) {
 
         binding.tvSnapFatah.setOnClickListener {
             if (snapchat == "") {
-                Toast.makeText(context, "Not have Profile", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, BassamViewUtil.NOT_HAVE_PROFILE_MESSAGE, Toast.LENGTH_SHORT).show()
             } else {
                 try {
                     val intent = Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://snapchat.com/add/$snapchat"))
-                    intent.setPackage("com.snapchat.android")
+                        Uri.parse(BassamViewUtil.SNAPCHAT_URI+"$snapchat"))
+                    intent.setPackage(BassamViewUtil.SNAP_PACKAGE)
                     startActivity(intent)
                 } catch (e: Exception) {
                     startActivity(Intent(Intent.ACTION_VIEW,
-                        Uri.parse("https://snapchat.com/add/$snapchat")))
+                        Uri.parse(BassamViewUtil.SNAPCHAT_URI+"$snapchat")))
                 }
 
             }
@@ -112,11 +115,11 @@ class SocailProfileFragment : Fragment(R.layout.fragment_socail_profile) {
 
         binding.tvSnapNasah.setOnClickListener {
             if (snapchat == "") {
-                Toast.makeText(context, "Not have Profile", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, BassamViewUtil.NOT_HAVE_PROFILE_MESSAGE, Toast.LENGTH_SHORT).show()
             } else {
-                cliptext = ClipData.newPlainText("label", "$snapchat")
+                cliptext = ClipData.newPlainText(BassamViewUtil.LABEL, "$snapchat")
                 clipboard.setPrimaryClip(cliptext)
-                Toast.makeText(context, "Text Copied", Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, BassamViewUtil.TEXT_COPIED, Toast.LENGTH_SHORT).show()
             }
 
         }

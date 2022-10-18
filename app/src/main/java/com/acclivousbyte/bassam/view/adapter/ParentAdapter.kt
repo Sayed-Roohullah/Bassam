@@ -9,12 +9,12 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.acclivousbyte.bassam.R
 import com.acclivousbyte.bassam.models.genrelModels.Data
-import com.acclivousbyte.bassam.utils.OnClickView
+import com.acclivousbyte.bassam.utils.onClickView
 import com.bumptech.glide.Glide
 
 class ParentAdapter(
     val context: Context,
-     private val clickView: OnClickView
+     private val clickView: onClickView
 ) : RecyclerView.Adapter<ParentAdapter.MyViewHolder>() {
 
     var datalist= ArrayList<Data>()
@@ -32,7 +32,7 @@ class ParentAdapter(
         val view = inflater.inflate(R.layout.parent_layout, parent, false)
         val myholder = MyViewHolder(view)
         view.setOnClickListener {
-            clickView.onclicklistener(datalist[myholder.adapterPosition])
+            clickView.onClickListener(datalist[myholder.adapterPosition])
         }
         return myholder
     }
